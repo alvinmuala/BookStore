@@ -3,6 +3,7 @@ import { AuthenticationService } from './../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
+
 @Component({
   selector: 'app-secret',
   templateUrl: './secret.component.html',
