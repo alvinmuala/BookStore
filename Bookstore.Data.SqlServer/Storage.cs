@@ -1,10 +1,11 @@
 ﻿using Bookstore.Data.SqlServer.Config;
 using BookStore.Domain.Models.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bookstore.Data.SqlServer
 {
-    public class Storage : DbContext
+    public class Storage : IdentityDbContext<User>
     {
         public DbSet<Book> Books { get; set; } = null!;
 
@@ -15,6 +16,7 @@ namespace Bookstore.Data.SqlServer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new BookConfig());
+            base.OnModelCreating(modelBuilder);
         }
 
     }

@@ -19,7 +19,7 @@ namespace Bookstore.Data.SqlServer.Repositories
 
             if (result == null)
             {
-                throw new Exception($"Book with Id '{id}' doesn't exist");
+                throw new ArgumentException($"Book with Id '{id}' doesn't exist");
             }
 
             return result;
