@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Api.Controllers
 {
-    [Produces("application/json")]
-    [Route("books")]
+    [Route("api/[controller]")]
     [ApiController]
     public class BooksController : ControllerBase
     {
@@ -18,19 +17,25 @@ namespace BookStore.Api.Controllers
 
      
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Book>> GetBook(int id)
         {
             var result = await _bookService.GetBookAsync(id);
 
-            return result;
+            return Ok(result);
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
             var result = await _bookService.GetAllBooksAsync();
 
-            return result.ToList();
+            return Ok(result.ToList());
         }
     }
 }

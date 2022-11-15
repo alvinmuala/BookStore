@@ -21,7 +21,7 @@ namespace BookStore.Domain.Services
             _configuration = configuration;
         }
 
-        public async Task<string> Register(RegisterRequestDto request)
+        public async Task<string> RegisterAsync(RegisterRequestDto request)
         {
             var userByEmail = await _userManager.FindByEmailAsync(request.Email);
             var userByUsername = await _userManager.FindByNameAsync(request.Username);
@@ -46,10 +46,10 @@ namespace BookStore.Domain.Services
                 throw new ArgumentException($"Unable to register user {request.Username} errors: {GetErrorsText(result.Errors)}");
             }
 
-            return await Login(new LoginRequestDto { Username = request.Email, Password = request.Password });
+            return await LoginAsync(new LoginRequestDto { Username = request.Email, Password = request.Password });
         }
 
-        public async Task<string> Login(LoginRequestDto request)
+        public async Task<string> LoginAsync(LoginRequestDto request)
         {
             var user = await _userManager.FindByNameAsync(request.Username);
 
@@ -64,11 +64,11 @@ namespace BookStore.Domain.Services
             }
 
             var authClaims = new List<Claim>
-        {
-            new(ClaimTypes.Name, user.UserName),
-            new(ClaimTypes.Email, user.Email),
-            new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        };
+            {
+                new(ClaimTypes.Name, user.UserName),
+                new(ClaimTypes.Email, user.Email),
+                new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            };
 
             var token = GetToken(authClaims);
 
