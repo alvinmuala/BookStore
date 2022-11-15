@@ -7,10 +7,10 @@ namespace BookStore.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IAuthenticationService _authenticationService;
-        public UsersController(IAuthenticationService authenticationService)
+        public UserController(IAuthenticationService authenticationService)
         {
             _authenticationService = authenticationService;
         }
