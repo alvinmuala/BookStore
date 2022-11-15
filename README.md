@@ -4,7 +4,8 @@ The project contains a .NET 6 WEB API using Jwt OAuth2 token based uthentication
 
 Please follow the steps below to test and run the solution:
 
-1.Open the .NET 6 Solution in Visual Studio and Launch the solution in debug mode to access the API swagger interface. 
+1.Open the .NET 6 Solution in Visual Studio, open your package manager console and run the command "Update-Database" to create and seed a local sql server database using  EF core. Once the database is created and all the seed data have been added, launch the solution in debug mode to access the API swagger interface. 
+You will need to first register a user in order to generate a JWT token and pass it to the header (e.g: Bearer <mytoken>) to access all the non-public API endpoints.
 
 
 2.To run the angular web UI, you will need to install Node.js — https://nodejs.org/en/ on your computer as well as Angular 14 — https://angular.io/guide/setup-local#install-the-angular-cli. 
