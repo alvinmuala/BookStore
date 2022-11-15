@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 export class BookClient {
   constructor(private http: HttpClient) {}
 
-  getWeatherData(): Observable<any> {
+  getBookData(): Observable<any> {
     return this.http.get(environment.apiUrl + '/books');
   }
 }
