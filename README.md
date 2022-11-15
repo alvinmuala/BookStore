@@ -1,6 +1,6 @@
 # BookStore
 
-The project contains a .NET 6 WEB API using Jwt OAuth2 token based uthentication and autorization and an Angular 14 Web UI that can be used to login, register as a user and access a  book catalogue. 
+The project contains a .NET 6 WEB API using a token-based authentication and autorization and an Angular 14 Web UI that can be used to login, register as a user and access a  book catalogue. 
 
 Please follow the steps below to test and run the solution:
 
