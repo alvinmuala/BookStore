@@ -12,3 +12,7 @@ You will need to first register a user in order to generate a JWT token and pass
 
 Open a powershell window and navigate to the folder BookStore.App and run the command "npm install" to install all the required npm packages for the solution. 
 Once the packages are installed, run the command "ng serve" to launch the Web UI. The web UI app has been configured to run on http://localhost:4200. 
+ 
+ For local testing, please run the WEB API and the WEB UI concurrently. 
+  
+ 
