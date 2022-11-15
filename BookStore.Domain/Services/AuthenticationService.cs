@@ -3,6 +3,7 @@ using BookStore.Domain.Models.Dtos;
 using BookStore.Domain.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -14,11 +15,13 @@ namespace BookStore.Domain.Services
     {
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<AuthenticationService> _logger;
 
-        public AuthenticationService(UserManager<User> userManager, IConfiguration configuration)
+        public AuthenticationService(UserManager<User> userManager, IConfiguration configuration, ILogger<AuthenticationService> logger)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _logger = logger;
         }
 
         public async Task<string> RegisterAsync(RegisterRequestDto request)
@@ -43,7 +46,9 @@ namespace BookStore.Domain.Services
 
             if (!result.Succeeded)
             {
-                throw new ArgumentException($"Unable to register user {request.Username} errors: {GetErrorsText(result.Errors)}");
+                var errorMessage = $"Unable to register user {request.Username} errors: {GetErrorsText(result.Errors)}";
+                _logger.LogError(errorMessage);
+                throw new ArgumentException(errorMessage);
             }
 
             return await LoginAsync(new LoginRequestDto { Username = request.Email, Password = request.Password });
